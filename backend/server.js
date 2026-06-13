@@ -77,6 +77,18 @@ const documentRoutes = require('./routes/documentRoutes');
 app.use('/api/auth', authRoutes);
 app.use('/api', documentRoutes);
 
+const path = require('path');
+// Serve static frontend build assets
+app.use(express.static(path.join(__dirname, '../frontend/dist')));
+
+// Route all non-API paths to React app's index.html
+app.get('*', (req, res, next) => {
+  if (req.path.startsWith('/api/') || req.path.startsWith('/socket.io/')) {
+    return next();
+  }
+  res.sendFile(path.join(__dirname, '../frontend/dist/index.html'));
+});
+
 // WebSocket synchronization engine.
 
 /** Raw WebSocket server dedicated to Yjs document exchange */

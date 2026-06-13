@@ -46,20 +46,15 @@ Open `http://localhost:5173` to access the editor.
 
 ---
 
-## Deploying to Render
+## Deploying to Render (Unified Service)
 
-### Backend (Web Service)
-- **Root Directory**: `backend`
-- **Build Command**: `npm install`
-- **Start Command**: `npm start`
-- **Environment Variables**:
-  - `MONGODB_URI`: Your MongoDB Atlas URL
-  - `JWT_SECRET`: A secure custom secret key
+Both the backend and frontend can be deployed together as a single **Web Service** on Render:
 
-### Frontend (Static Site)
-- **Root Directory**: `frontend`
-- **Build Command**: `npm run build`
-- **Publish Directory**: `dist`
-- **Environment Variables**:
-  - `VITE_API_URL`: Your backend URL (e.g. `https://your-backend.onrender.com`)
-  - `VITE_WS_URL`: Your WebSocket URL (e.g. `wss://your-backend.onrender.com`)
+1. **Service Type**: Web Service
+2. **Root Directory**: (Leave blank - use repository root)
+3. **Build Command**: `npm run build`
+4. **Start Command**: `npm start`
+5. **Environment Variables**:
+   - `MONGODB_URI`: Your MongoDB connection string (e.g. MongoDB Atlas).
+   - `JWT_SECRET`: A secure key for JWT signing.
+   - *Note*: No frontend environment variables are needed; the React app automatically detects and points to the hosting origin.

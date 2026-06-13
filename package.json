@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "description": "MERN Stack Collaborative Editor with Yjs and WebSockets",
   "scripts": {
-    "start": "concurrently \"npm run server\" \"npm run client\"",
+    "start": "node backend/server.js",
+    "build": "cd frontend && npm install && npm run build && cd ../backend && npm install",
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
     "server": "cd backend && npx nodemon server.js",
     "client": "cd frontend && npm run dev",
     "install-all": "npm install && cd backend && npm install && cd ../frontend && npm install"
