@@ -82,7 +82,7 @@ const path = require('path');
 app.use(express.static(path.join(__dirname, '../frontend/dist')));
 
 // Route all non-API paths to React app's index.html
-app.get('*', (req, res, next) => {
+app.get('*any', (req, res, next) => {
   if (req.path.startsWith('/api/') || req.path.startsWith('/socket.io/')) {
     return next();
   }
